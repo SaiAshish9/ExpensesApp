@@ -86,7 +86,6 @@ class _NewTransactionState extends State<NewTransaction> {
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       onPressed: _presentDatePicker),
-
                   ///
                 ]),
               ),

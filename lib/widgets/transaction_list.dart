@@ -8,7 +8,13 @@ class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
   final Function deleteTx;
 
+
+// stateful 
+// initialState
+// const availableColors=[Colors.red,Colors.blue]
+
   TransactionList(this.transactions, this.deleteTx);
+
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +33,14 @@ class TransactionList extends StatelessWidget {
               ]);
             },
           )
-        : ListView.builder(
-            itemBuilder: (ctx, index) {
-              return TransactionItem(transaction: transactions[index], deleteTx: deleteTx);
+// ListViewBuilder
+        : ListView(
+          children:[
+            // itemBuilder: (ctx, index) {
+              ...transactions.map((tx)=> TransactionItem(
+                key:ValueKey(tx.id),
+                transaction: tx, 
+                deleteTx: deleteTx)).toList(),
               // Card(
               //     child: Row(children: <Widget>[
               //   Container(
@@ -58,8 +69,10 @@ class TransactionList extends StatelessWidget {
               //             style: TextStyle(color: Colors.grey)),
               //       ]),
               // ]));
-            },
-            itemCount: transactions.length,
+            // },
+            // itemCount: transactions.length,
+          ]
           );
+          
   }
 }

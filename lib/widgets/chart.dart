@@ -5,7 +5,9 @@ import 'chart_bar.dart';
 
 class Chart extends StatelessWidget {
   final List<Transaction> recentTransactions;
-  Chart(this.recentTransactions);
+  Chart(this.recentTransactions){
+       print('Constructor Chart');
+  }
 
   List<Map<String, Object>> get groupedTransactionValues {
     return List.generate(7, (index) {
@@ -51,12 +53,15 @@ class Chart extends StatelessWidget {
                   // fit:FlexFit.loose,
                   // flex: 2 ,
                   fit: FlexFit.tight,
+                  // can't use const here as data['day'] is dynamic
                   child: ChartBar(
                       data['day'],
                       data['amount'],
                       totalSpending == 0.0
                           ? 0.0
-                          : (data['amount'] as double) / totalSpending),
+                          : (data['amount'] as double) / totalSpending
+                          )
+                          ,
                 );
               }).toList(),
             ),
